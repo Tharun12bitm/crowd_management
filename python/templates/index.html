@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowd Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👥 Crowd Detection System</h1>
+            <p>Real-time analysis from IP cameras</p>
+        </header>
+
+        <div class="camera-help">
+            <h3>📱 IP Webcam Setup:</h3>
+            <ol>
+                <li>Install "IP Webcam" app (Play Store)</li>
+                <li>Start server → Video preferences</li>
+                <li>Copy URL: <code>http://192.168.x.x:8080/shot.jpg</code></li>
+            </ol>
+        </div>
+
+        <form id="analysisForm" class="analysis-form">
+            <div class="form-group">
+                <label for="cameraUrl">Camera URL</label>
+                <input type="url" id="cameraUrl" placeholder="http://192.168.1.100:8080/shot.jpg" required>
+            </div>
+            
+            <button type="submit" class="btn-primary">📹 Open Camera</button>
+        </form>
+
+        <div id="cameraSection" style="display: none;">
+            <div class="camera-header">
+                <div class="camera-info">
+                    <strong>Camera:</strong> <span id="cameraLabel" class="camera-label">-</span>
+                </div>
+                <div class="camera-status" id="cameraStatus">Not connected</div>
+            </div>
+            <div id="probeResult" class="probe-result" style="display:none; margin-top:0.5rem; font-size:0.9rem; color:#4a5568;"></div>
+            <div class="camera-display">
+                <img id="liveStream" src="" alt="Live Camera Feed" />
+            </div>
+
+            <div class="controls">
+                <button id="captureBtn" class="btn-capture">📸 Capture Snapshot</button>
+                <button id="analyzeBtn" class="btn-analyze">🔍 Analyze Crowd</button>
+                <button id="stopBtn" class="btn-stop">⏹️ Stop</button>
+            </div>
+
+            <div id="analysisResult" class="analysis-result"></div>
+        </div>
+
+        <div id="result" class="result"></div>
+        <div id="status-indicator" class="status-indicator"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
